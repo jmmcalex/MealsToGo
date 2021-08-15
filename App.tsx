@@ -10,7 +10,7 @@ import Navigation from './navigation';
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
-
+  console.log('scraw');
   if (!isLoadingComplete) {
     return null;
   } else {
