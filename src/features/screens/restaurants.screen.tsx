@@ -28,11 +28,11 @@ export function RestaurantsScreen() {
 const RestaurantScreenContainer = styled.View`
   flex: 1;
   align-items: center;
-  padding: ${({ theme }) => theme.sizes[1]};
+  padding: ${({ theme }) => theme.space[2]};
 `;
 
 const RestaurantCardList = styled.View`
   flex: 1;
   width: 100%;
-  margin-top: ${({ theme }) => theme.sizes[1]};
+  margin-top: ${({ theme }) => theme.space[2]};
 `;
