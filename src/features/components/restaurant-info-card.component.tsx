@@ -5,7 +5,7 @@ import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 import open from '../../assets/svgs/open';
 import star from '../../assets/svgs/star';
-import { Spacer, SpacerTypes } from '../../components/spacer/spacer.component';
+import { Spacer } from '../../components/spacer/spacer.component';
 import { Restaurant } from '../../models/restaurant';
 
 type RestaurantInfoProps = {
@@ -40,9 +40,9 @@ export const RestaurantInfoCard = ({ restaurant }: RestaurantInfoProps) => {
             {isClosedTemporarily && (
               <Text style={{ color: 'red' }}>CLOSED TEMPORARILY</Text>
             )}
-            <Spacer variant={SpacerTypes.LEFT_MD} />
+            <Spacer position='left' size='medium' />
             {isOpenNow && <SvgXml xml={open} width={30} height={30} />}
-            <Spacer variant={SpacerTypes.LEFT_MD} />
+            <Spacer position='left' size='medium' />
             <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
           </SectionEnd>
         </MetaDataSection>

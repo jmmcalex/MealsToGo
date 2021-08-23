@@ -1,55 +1,34 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import styled, { DefaultTheme } from 'styled-components/native';
 
-export enum SpacerTypes {
-  TOP_SM = 'TOP_SM',
-  TOP_MD = 'TOP_MD',
-  TOP_LG = 'TOP_LG',
-
-  LEFT_SM = 'LEFT_SM',
-  LEFT_MD = 'LEFT_MD',
-  LEFT_LG = 'LEFT_LG',
-}
-
-export const Spacer = ({ variant }: { variant: SpacerTypes }) => {
-  switch (variant) {
-    case SpacerTypes.TOP_SM:
-      return <TopSm />;
-    case SpacerTypes.TOP_MD:
-      return <TopMd />;
-    case SpacerTypes.TOP_LG:
-      return <TopLg />;
-    case SpacerTypes.LEFT_SM:
-      return <LeftSm />;
-    case SpacerTypes.LEFT_MD:
-      return <LeftMd />;
-    case SpacerTypes.LEFT_LG:
-      return <LeftLg />;
-    default:
-      return <TopSm />;
-  }
+export const SizeMap = {
+  small: 1,
+  medium: 2,
+  large: 3,
 };
 
-const TopSm = styled.View`
-  margin-top: ${({ theme }) => theme.space[1]};
-`;
+export const PositionMap = {
+  top: 'marginTop',
+  left: 'marginLeft',
+  bottom: 'marginBottom',
+  right: 'marginRight',
+};
 
-const TopMd = styled.View`
-  margin-top: ${({ theme }) => theme.space[2]};
-`;
+export type SizeVariants = 'small' | 'medium' | 'large';
+export type PositionVariants = 'top' | 'left' | 'bottom' | 'right';
 
-const TopLg = styled.View`
-  margin-top: ${({ theme }) => theme.space[3]};
-`;
+export interface SpacerProps {
+  position: PositionVariants;
+  size: SizeVariants;
+  theme: DefaultTheme;
+}
 
-const LeftSm = styled.View`
-  margin-left: ${({ theme }) => theme.space[1]};
-`;
+const getVariant = ({ position, size, theme }: SpacerProps) => {
+  const sizeIndex = SizeMap[size];
+  const property = PositionMap[position];
+  const value = theme.space[sizeIndex];
+  return `${property}:${value}`;
+};
 
-const LeftMd = styled.View`
-  margin-left: ${({ theme }) => theme.space[2]};
-`;
-
-const LeftLg = styled.View`
-  margin-left: ${({ theme }) => theme.space[3]};
+export const Spacer = styled.View<SpacerProps>`
+  ${({ position, size, theme }) => getVariant({ position, size, theme })}
 `;
