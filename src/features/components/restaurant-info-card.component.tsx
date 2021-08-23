@@ -1,12 +1,18 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
-import { Card } from 'react-native-paper';
 import { SvgXml } from 'react-native-svg';
-import styled from 'styled-components/native';
 import open from '../../assets/svgs/open';
 import star from '../../assets/svgs/star';
 import { Spacer } from '../../components/spacer/spacer.component';
+import { Text } from '../../components/typography/text.component';
 import { Restaurant } from '../../models/restaurant';
+import {
+  Icon,
+  Info,
+  MetaDataSection,
+  RestaurantCard,
+  RestaurantCardImage,
+  SectionEnd,
+} from './restaurant-info-card.styles';
 
 type RestaurantInfoProps = {
   restaurant: Restaurant;
@@ -31,59 +37,23 @@ export const RestaurantInfoCard = ({ restaurant }: RestaurantInfoProps) => {
     <RestaurantCard>
       <RestaurantCardImage source={{ uri: photos[0] }} />
       <Info>
-        <Title>{name}</Title>
+        <Text variant='title'>{name}</Text>
         <MetaDataSection>
           {ratingArray.map((_, index) => (
             <SvgXml key={index} xml={star} width={30} height={30} />
           ))}
           <SectionEnd>
             {isClosedTemporarily && (
-              <Text style={{ color: 'red' }}>CLOSED TEMPORARILY</Text>
+              <Text variant='error'>CLOSED TEMPORARILY</Text>
             )}
             <Spacer position='left' size='medium' />
             {isOpenNow && <SvgXml xml={open} width={30} height={30} />}
             <Spacer position='left' size='medium' />
-            <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+            <Icon source={{ uri: icon }} />
           </SectionEnd>
         </MetaDataSection>
-        <Address>{address}</Address>
+        <Text variant='caption'>{address}</Text>
       </Info>
     </RestaurantCard>
   );
 };
-
-const RestaurantCard = styled(Card)`
-  background-color: ${({ theme }) => theme.colors.bg.primary};
-`;
-
-const RestaurantCardImage = styled(Card.Cover)`
-  padding: ${({ theme }) => theme.space[2]};
-  background-color: ${({ theme }) => theme.colors.bg.primary};
-`;
-
-const Info = styled.View`
-  padding: ${({ theme }) => theme.space[3]};
-`;
-
-const Title = styled.Text`
-  font-size: ${({ theme }) => theme.fontSizes.title};
-  color: ${({ theme }) => theme.colors.ui.primary};
-`;
-
-const Address = styled.Text`
-  font-size: ${({ theme }) => theme.fontSizes.caption};
-  color: ${({ theme }) => theme.colors.ui.primary};
-`;
-
-const MetaDataSection = styled.View`
-  flex-direction: row;
-  align-items: center;
-  padding-top: ${({ theme }) => theme.space[1]};
-  padding-bottom: ${({ theme }) => theme.space[1]};
-`;
-
-const SectionEnd = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin-left: auto;
-`;
