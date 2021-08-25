@@ -5,8 +5,9 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components/native';
 import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
-import { theme } from './src/infrastructure/theme';
+import { theme } from './src/constants/theme';
 import Navigation from './src/navigation';
+import { RestaurantsContextProvider } from './src/services/restaurants/mock/restaurants.context';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -17,8 +18,10 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
+          <RestaurantsContextProvider>
+            <Navigation colorScheme={colorScheme} />
+            <StatusBar />
+          </RestaurantsContextProvider>
         </ThemeProvider>
       </SafeAreaProvider>
     );

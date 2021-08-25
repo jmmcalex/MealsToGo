@@ -20,24 +20,31 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName='TabOne'
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+      initialRouteName='Restaurants'
+      tabBarOptions={{ activeTintColor: Colors['light'].tint }}
     >
       <BottomTab.Screen
-        name='TabOne'
+        name='Restaurants'
         component={TabOneNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name='ios-code' color={color} />
+            <TabBarIcon name='restaurant' color={color} />
           ),
         }}
       />
       <BottomTab.Screen
-        name='TabTwo'
+        name='Map'
+        component={TabTwoNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name='map' color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name='Settings'
         component={TabTwoNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name='ios-code' color={color} />
+            <TabBarIcon name='settings' color={color} />
           ),
         }}
       />
@@ -64,7 +71,7 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name='Restaurants'
         component={RestaurantsScreen}
-        options={{ headerTitle: 'Restaurants' }}
+        options={{ headerShown: false }}
       />
     </TabOneStack.Navigator>
   );
@@ -76,7 +83,7 @@ function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name='TabTwoScreen'
+        name='Map'
         component={TabTwoScreen}
         options={{ headerTitle: 'Tab Two Title' }}
       />
