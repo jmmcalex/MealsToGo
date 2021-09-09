@@ -8,6 +8,7 @@ import useColorScheme from './src/hooks/useColorScheme';
 import { theme } from './src/constants/theme';
 import Navigation from './src/navigation';
 import { RestaurantsContextProvider } from './src/services/restaurants/mock/restaurants.context';
+import { LocationContextProvider } from './src/services/location/location.context';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -18,10 +19,12 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
-          <RestaurantsContextProvider>
-            <Navigation colorScheme={colorScheme} />
-            <StatusBar />
-          </RestaurantsContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <Navigation colorScheme={colorScheme} />
+              <StatusBar />
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
         </ThemeProvider>
       </SafeAreaProvider>
     );

@@ -12,7 +12,9 @@ export const locationRequest = (searchTerm: string): Promise<Location> => {
   });
 };
 
-export const locationTransform = (result: Location): {} => {
+export const locationTransform = (
+  result: Location
+): { lat: number; lng: number } => {
   const formattedResult: Location = camelize(result);
   const { geometry } = formattedResult.results[0];
   const { lat, lng } = geometry.location;

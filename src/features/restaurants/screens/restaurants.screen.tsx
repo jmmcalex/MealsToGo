@@ -3,10 +3,10 @@ import { useContext, useState } from 'react';
 import { FlatList } from 'react-native';
 import { ActivityIndicator, Colors, Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
-import { Spacer } from '../../components/spacer/spacer.component';
-import { SafeAreaView } from '../../components/utility/safe-area.component';
-import { RestaurantsContext } from '../../services/restaurants/mock/restaurants.context';
-import { Restaurant } from '../../types/restaurant';
+import { Spacer } from '../../../components/spacer/spacer.component';
+import { SafeAreaView } from '../../../components/utility/safe-area.component';
+import { RestaurantsContext } from '../../../services/restaurants/mock/restaurants.context';
+import { Restaurant } from '../../../types/restaurant';
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
 
 export function RestaurantsScreen() {

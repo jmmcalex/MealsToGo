@@ -1,12 +1,12 @@
 import React from 'react';
 import { useContext } from 'react';
 import { SvgXml } from 'react-native-svg';
-import open from '../../assets/svgs/open';
-import star from '../../assets/svgs/star';
-import { Spacer } from '../../components/spacer/spacer.component';
-import { Text } from '../../components/typography/text.component';
-import { RestaurantsContext } from '../../services/restaurants/mock/restaurants.context';
-import { Restaurant } from '../../types/restaurant';
+import open from '../../../assets/svgs/open';
+import star from '../../../assets/svgs/star';
+import { Spacer } from '../../../components/spacer/spacer.component';
+import { Text } from '../../../components/typography/text.component';
+import { RestaurantsContext } from '../../../services/restaurants/mock/restaurants.context';
+import { Restaurant } from '../../../types/restaurant';
 import {
   Icon,
   Info,
