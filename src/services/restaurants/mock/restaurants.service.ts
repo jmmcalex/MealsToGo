@@ -6,9 +6,7 @@ import {
   Restaurant,
 } from '../../../types/restaurant';
 
-export const restaurantsRequest = (
-  location = '37.7749295,-122.4194155'
-): Promise<Location> => {
+export const restaurantsRequest = (location: string): Promise<Location> => {
   return new Promise((resolve, reject) => {
     const mock: Location = mocks[location];
     if (!mock) {

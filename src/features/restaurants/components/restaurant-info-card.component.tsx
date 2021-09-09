@@ -1,11 +1,9 @@
 import React from 'react';
-import { useContext } from 'react';
 import { SvgXml } from 'react-native-svg';
 import open from '../../../assets/svgs/open';
 import star from '../../../assets/svgs/star';
 import { Spacer } from '../../../components/spacer/spacer.component';
 import { Text } from '../../../components/typography/text.component';
-import { RestaurantsContext } from '../../../services/restaurants/mock/restaurants.context';
 import { Restaurant } from '../../../types/restaurant';
 import {
   Icon,
@@ -31,6 +29,7 @@ export const RestaurantInfoCard = ({ restaurant }: RestaurantInfoProps) => {
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
+    place_id,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.ceil(rating)));
@@ -42,7 +41,12 @@ export const RestaurantInfoCard = ({ restaurant }: RestaurantInfoProps) => {
         <Text variant='title'>{name}</Text>
         <MetaDataSection>
           {ratingArray.map((_, index) => (
-            <SvgXml key={index} xml={star} width={30} height={30} />
+            <SvgXml
+              key={`star-${place_id}-${index}`}
+              xml={star}
+              width={30}
+              height={30}
+            />
           ))}
           <SectionEnd>
             {isClosedTemporarily && (

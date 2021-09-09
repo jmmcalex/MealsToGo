@@ -28,27 +28,31 @@ export const LocationContextProvider = ({ children }: ContextProps) => {
   const [location, setlocation] = useState<{ lat: number; lng: number }>(
     DefaultLocationValue.location
   );
-  const [keyword, setKeyword] = useState<string>('san francisco');
+  const [keyword, setKeyword] = useState<string>('San Francisco');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
 
   useEffect(() => {
     onSearch(keyword);
-  }, [keyword]);
-
-  const onSearch = (searchKeyWord: string) => {
-    setIsLoading(true);
-    setKeyword(searchKeyWord);
-    locationRequest(searchKeyWord.toLowerCase())
+    if (!keyword.length) {
+      return;
+    }
+    locationRequest(keyword.toLowerCase())
       .then(locationTransform)
       .then((location) => {
         setIsLoading(false);
         setlocation(location);
+        console.log('locaiton', location);
       })
       .catch((error) => {
         setIsLoading(false);
         setError(error);
       });
+  }, [keyword]);
+
+  const onSearch = (searchKeyWord: string) => {
+    setIsLoading(true);
+    setKeyword(searchKeyWord);
   };
 
   return (
