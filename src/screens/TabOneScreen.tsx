@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-import { Spacing } from '../constants/Layout';
+import { Spacing } from '../infrastructure/Layout';
 
 export default function TabOneScreen() {
   const [searchQuery, setSearchQuery] = useState('');
