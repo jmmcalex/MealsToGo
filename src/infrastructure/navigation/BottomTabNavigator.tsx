@@ -5,12 +5,16 @@
 
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from '@react-navigation/stack';
 import * as React from 'react';
-import Colors from '../Colors';
+import { RestaurantDetailScreen } from '../../features/restaurants/screens/restaurant-detail.screen';
 import { RestaurantsScreen } from '../../features/restaurants/screens/restaurants.screen';
 import useColorScheme from '../../hooks/useColorScheme';
 import TabTwoScreen from '../../screens/TabTwoScreen';
+import Colors from '../Colors';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from './types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -67,10 +71,19 @@ const TabOneStack = createStackNavigator<TabOneParamList>();
 
 function TabOneNavigator() {
   return (
-    <TabOneStack.Navigator>
+    <TabOneStack.Navigator
+      screenOptions={{
+        ...TransitionPresets.ModalPresentationIOS,
+      }}
+    >
       <TabOneStack.Screen
         name='Restaurants'
         component={RestaurantsScreen}
+        options={{ headerShown: false }}
+      />
+      <TabOneStack.Screen
+        name='RestaurantDetail'
+        component={RestaurantDetailScreen}
         options={{ headerShown: false }}
       />
     </TabOneStack.Navigator>

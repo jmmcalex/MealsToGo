@@ -42,7 +42,6 @@ export const LocationContextProvider = ({ children }: ContextProps) => {
       .then((location) => {
         setIsLoading(false);
         setlocation(location);
-        console.log('locaiton', location);
       })
       .catch((error) => {
         setIsLoading(false);

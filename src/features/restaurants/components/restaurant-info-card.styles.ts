@@ -3,10 +3,12 @@ import styled from 'styled-components/native';
 
 export const RestaurantCard = styled(Card)`
   background-color: ${({ theme }) => theme.colors.bg.primary};
+  width: 100%;
 `;
 
 export const RestaurantCardImage = styled(Card.Cover)`
   background-color: ${({ theme }) => theme.colors.bg.primary};
+  padding: ${({ theme }) => theme.space[2]};
 `;
 
 export const Info = styled.View`

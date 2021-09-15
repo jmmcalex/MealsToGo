@@ -1,16 +1,20 @@
+import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
-import { useContext, useState } from 'react';
-import { FlatList } from 'react-native';
-import { ActivityIndicator, Card, Colors, Searchbar } from 'react-native-paper';
+import { useContext } from 'react';
+import { FlatList, Pressable } from 'react-native';
+import { ActivityIndicator, Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { Spacer } from '../../../components/spacer/spacer.component';
 import { SafeAreaView } from '../../../components/utility/safe-area.component';
+import { TabOneParamList } from '../../../infrastructure/navigation/types';
 import { RestaurantsContext } from '../../../services/restaurants/mock/restaurants.context';
 import { Restaurant } from '../../../types/restaurant';
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
 import { Search } from '../components/search.component';
 
-export function RestaurantsScreen() {
+type RestaurantScreenProps = StackScreenProps<TabOneParamList, 'Restaurants'>;
+
+export function RestaurantsScreen({ navigation }: RestaurantScreenProps) {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
 
   return (
@@ -32,7 +36,11 @@ export function RestaurantsScreen() {
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => {
             return (
-              <CardContainer>
+              <CardContainer
+                onPress={() =>
+                  navigation.navigate('RestaurantDetail', { restaurant: item })
+                }
+              >
                 <RestaurantInfoCard restaurant={item} />
                 <Spacer position='bottom' size='large' />
               </CardContainer>
@@ -50,6 +58,6 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-const CardContainer = styled.View`
+const CardContainer = styled(Pressable)`
   min-width: 100%;
 `;

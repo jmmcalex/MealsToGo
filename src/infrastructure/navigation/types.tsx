@@ -3,6 +3,8 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
+import { Restaurant } from '../../types/restaurant';
+
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
@@ -16,6 +18,9 @@ export type BottomTabParamList = {
 
 export type TabOneParamList = {
   Restaurants: undefined;
+  RestaurantDetail: {
+    restaurant: Restaurant;
+  };
 };
 
 export type TabTwoParamList = {
