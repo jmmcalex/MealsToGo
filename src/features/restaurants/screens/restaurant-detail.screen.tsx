@@ -1,6 +1,6 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React, { useState } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 import { TabOneParamList } from '../../../infrastructure/navigation/types';
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component';

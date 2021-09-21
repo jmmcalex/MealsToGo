@@ -9,9 +9,7 @@ interface MapCalloutProps {
 }
 
 export const MapCallout = ({ restaurant }: MapCalloutProps) => (
-  <Callout>
-    <View>
-      <CompactRestaurantInfo restaurant={restaurant} />
-    </View>
-  </Callout>
+  <View>
+    <CompactRestaurantInfo restaurant={restaurant} />
+  </View>
 );

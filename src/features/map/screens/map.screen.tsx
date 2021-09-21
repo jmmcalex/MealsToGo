@@ -1,13 +1,17 @@
+import { StackScreenProps } from '@react-navigation/stack';
 import React, { useContext, useEffect, useState } from 'react';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import styled from 'styled-components/native';
 import { View } from '../../../components/Themed';
+import { TabTwoParamList } from '../../../infrastructure/navigation/types';
 import { LocationContext } from '../../../services/location/location.context';
 import { RestaurantsContext } from '../../../services/restaurants/mock/restaurants.context';
 import { MapCallout } from '../components/map-callout.component';
 import { Search } from '../components/search.component';
 
-export const MapScreen = () => {
+type MapScreenProps = StackScreenProps<TabTwoParamList, 'Map'>;
+
+export const MapScreen = ({ navigation }: MapScreenProps) => {
   const { location } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
   const [latDelta, setLatDelta] = useState(0);
@@ -43,7 +47,13 @@ export const MapScreen = () => {
                 latitude: restaurant.geometry.location.lat,
               }}
             >
-              <MapCallout restaurant={restaurant} />
+              <Callout
+                onPress={() =>
+                  navigation.navigate('RestaurantDetail', { restaurant })
+                }
+              >
+                <MapCallout restaurant={restaurant} />
+              </Callout>
             </Marker>
           );
         })}

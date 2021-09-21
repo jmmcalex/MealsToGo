@@ -25,6 +25,9 @@ export type TabOneParamList = {
 
 export type TabTwoParamList = {
   Map: undefined;
+  RestaurantDetail: {
+    restaurant: Restaurant;
+  };
 };
 
 export type TabThreeParamList = {
