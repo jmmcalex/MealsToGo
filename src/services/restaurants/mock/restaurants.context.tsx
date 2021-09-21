@@ -54,7 +54,7 @@ export const RestaurantsContextProvider = ({ children }: Props) => {
   };
 
   useEffect(() => {
-    if (location) retrieveRestaurants(location);
+    if (location) retrieveRestaurants(location.geometry.location);
   }, [location]);
 
   return (

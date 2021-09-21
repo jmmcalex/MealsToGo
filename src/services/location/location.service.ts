@@ -1,10 +1,12 @@
 import camelize from 'camelize';
-import { Location } from '../../types/location';
+import { Location, LocationResponse } from '../../types/location';
 import { locations } from './location.mock';
 
-export const locationRequest = (searchTerm: string): Promise<Location> => {
+export const locationRequest = (
+  searchTerm: string
+): Promise<LocationResponse> => {
   return new Promise((resolve, reject) => {
-    const location: Location = locations[searchTerm];
+    const location: LocationResponse = locations[searchTerm];
     if (!location) {
       reject('not found');
     }
@@ -12,11 +14,10 @@ export const locationRequest = (searchTerm: string): Promise<Location> => {
   });
 };
 
-export const locationTransform = (
-  result: Location
-): { lat: number; lng: number } => {
-  const formattedResult: Location = camelize(result);
+export const locationTransform = (result: LocationResponse): Location => {
+  const formattedResult: LocationResponse = camelize(result);
   const { geometry } = formattedResult.results[0];
-  const { lat, lng } = geometry.location;
-  return { lat, lng };
+  return {
+    geometry,
+  };
 };

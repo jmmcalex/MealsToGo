@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
+import { Location } from '../../types/location';
 import { locationRequest, locationTransform } from './location.service';
 
 type ContextProps = {
@@ -8,7 +9,7 @@ type ContextProps = {
 type LocationValue = {
   isLoading: boolean;
   error: any;
-  location: { lat: number; lng: number };
+  location: Location;
   keyword: string;
   search: (s: string) => void;
 };
@@ -16,7 +17,24 @@ type LocationValue = {
 const DefaultLocationValue: LocationValue = {
   isLoading: false,
   error: null,
-  location: { lat: 0, lng: 0 },
+  location: {
+    geometry: {
+      location: {
+        lat: 0,
+        lng: 0,
+      },
+      viewport: {
+        northeast: {
+          lat: 0,
+          lng: 0,
+        },
+        southwest: {
+          lat: 0,
+          lng: 0,
+        },
+      },
+    },
+  },
   keyword: '',
   search: () => null,
 };
@@ -25,7 +43,7 @@ export const LocationContext =
   createContext<LocationValue>(DefaultLocationValue);
 
 export const LocationContextProvider = ({ children }: ContextProps) => {
-  const [location, setlocation] = useState<{ lat: number; lng: number }>(
+  const [location, setlocation] = useState<Location>(
     DefaultLocationValue.location
   );
   const [keyword, setKeyword] = useState<string>('San Francisco');

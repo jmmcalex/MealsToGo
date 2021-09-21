@@ -10,10 +10,10 @@ import {
   TransitionPresets,
 } from '@react-navigation/stack';
 import * as React from 'react';
+import { MapScreen } from '../../features/map/screens/map.screen';
 import { RestaurantDetailScreen } from '../../features/restaurants/screens/restaurant-detail.screen';
 import { RestaurantsScreen } from '../../features/restaurants/screens/restaurants.screen';
 import useColorScheme from '../../hooks/useColorScheme';
-import TabTwoScreen from '../../screens/TabTwoScreen';
 import Colors from '../Colors';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from './types';
 
@@ -97,8 +97,8 @@ function TabTwoNavigator() {
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
         name='Map'
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        component={MapScreen}
+        options={{ headerShown: false }}
       />
     </TabTwoStack.Navigator>
   );

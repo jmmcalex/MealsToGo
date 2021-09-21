@@ -1,18 +1,24 @@
+export interface Geometry {
+  location: {
+    lng: number;
+    lat: number;
+  };
+  viewport: {
+    northeast: {
+      lat: number;
+      lng: number;
+    };
+    southwest: {
+      lat: number;
+      lng: number;
+    };
+  };
+}
+
 export interface Location {
-  results: [
-    {
-      geometry: {
-        location: {
-          lng: number;
-          lat: number;
-        };
-      };
-      viewport: {
-        [direction: string]: {
-          lat: number;
-          lng: number;
-        };
-      };
-    }
-  ];
+  geometry: Geometry;
+}
+
+export interface LocationResponse {
+  results: Location[];
 }
