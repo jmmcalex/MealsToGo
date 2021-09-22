@@ -9,6 +9,7 @@ import { theme } from './src/infrastructure/theme';
 import Navigation from './src/infrastructure/navigation';
 import { RestaurantsContextProvider } from './src/services/restaurants/mock/restaurants.context';
 import { LocationContextProvider } from './src/services/location/location.context';
+import { FavoritesContextProvider } from './src/services/favorites/favorites.context';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -19,12 +20,14 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation colorScheme={colorScheme} />
-              <StatusBar />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
+          <FavoritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation colorScheme={colorScheme} />
+                <StatusBar />
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavoritesContextProvider>
         </ThemeProvider>
       </SafeAreaProvider>
     );

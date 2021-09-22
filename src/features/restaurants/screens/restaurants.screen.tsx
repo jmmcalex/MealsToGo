@@ -7,6 +7,7 @@ import styled from 'styled-components/native';
 import { Spacer } from '../../../components/spacer/spacer.component';
 import { SafeAreaView } from '../../../components/utility/safe-area.component';
 import { TabOneParamList } from '../../../infrastructure/navigation/types';
+import { FavoritesContext } from '../../../services/favorites/favorites.context';
 import { RestaurantsContext } from '../../../services/restaurants/mock/restaurants.context';
 import { Restaurant } from '../../../types/restaurant';
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
@@ -16,6 +17,8 @@ type RestaurantScreenProps = StackScreenProps<TabOneParamList, 'Restaurants'>;
 
 export function RestaurantsScreen({ navigation }: RestaurantScreenProps) {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
+  const { favorites, addToFavorites, removeFromFavorites } =
+    useContext(FavoritesContext);
 
   return (
     <SafeAreaView edges={['left', 'top', 'right']}>

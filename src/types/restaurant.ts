@@ -24,7 +24,7 @@ export interface MockRestaurant {
       width: number;
     }
   ];
-  place_id: string;
+  placeId: string;
   plus_code: {
     compound_code: string;
     global_code: string;
