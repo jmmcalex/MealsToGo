@@ -1,10 +1,11 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import * as React from 'react';
-import { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FlatList, Pressable } from 'react-native';
 import { ActivityIndicator, Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
+import { FavoritesBar } from '../../../components/favorites/favorites-bar.component';
 import { Spacer } from '../../../components/spacer/spacer.component';
+import { Text } from '../../../components/typography/text.component';
 import { SafeAreaView } from '../../../components/utility/safe-area.component';
 import { TabOneParamList } from '../../../infrastructure/navigation/types';
 import { FavoritesContext } from '../../../services/favorites/favorites.context';
@@ -17,14 +18,16 @@ type RestaurantScreenProps = StackScreenProps<TabOneParamList, 'Restaurants'>;
 
 export function RestaurantsScreen({ navigation }: RestaurantScreenProps) {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
-  const { favorites, addToFavorites, removeFromFavorites } =
-    useContext(FavoritesContext);
+  const { favorites } = useContext(FavoritesContext);
+  const [isToggled, setIsToggled] = useState(false);
 
   return (
-    <SafeAreaView edges={['left', 'top', 'right']}>
-      <Search />
-      <Spacer position='top' size='medium' />
-      {isLoading ? (
+    <SafeAreaView edges={['left', 'top', 'right', 'bottom']}>
+      <Search
+        isFavoritesToggled={isToggled}
+        onFavoritesToggle={() => setIsToggled(!isToggled)}
+      />
+      {isLoading && (
         <LoadingContainer>
           <ActivityIndicator
             size={50}
@@ -33,7 +36,21 @@ export function RestaurantsScreen({ navigation }: RestaurantScreenProps) {
             color={Colors.blue300}
           />
         </LoadingContainer>
-      ) : (
+      )}
+      <Spacer position='top' size='medium'>
+        {isToggled && (
+          <>
+            <Spacer position='left' size='large'>
+              <Text variant='caption'>Favorites</Text>
+            </Spacer>
+            <FavoritesBar
+              goToDetail={(restaurant: Restaurant) =>
+                navigation.navigate('RestaurantDetail', { restaurant })
+              }
+              favorites={favorites}
+            />
+          </>
+        )}
         <FlatList<Restaurant>
           data={restaurants}
           keyExtractor={(item) => item.name}
@@ -41,7 +58,9 @@ export function RestaurantsScreen({ navigation }: RestaurantScreenProps) {
             return (
               <CardContainer
                 onPress={() =>
-                  navigation.navigate('RestaurantDetail', { restaurant: item })
+                  navigation.navigate('RestaurantDetail', {
+                    restaurant: item,
+                  })
                 }
               >
                 <RestaurantInfoCard restaurant={item} />
@@ -50,7 +69,7 @@ export function RestaurantsScreen({ navigation }: RestaurantScreenProps) {
             );
           }}
         />
-      )}
+      </Spacer>
     </SafeAreaView>
   );
 }

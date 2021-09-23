@@ -7,10 +7,10 @@ export const SizeMap = {
 };
 
 export const PositionMap = {
-  top: 'marginTop',
-  left: 'marginLeft',
-  bottom: 'marginBottom',
-  right: 'marginRight',
+  top: 'margin-top',
+  left: 'margin-left',
+  bottom: 'margin-bottom',
+  right: 'margin-right',
 };
 
 export type SizeVariants = 'small' | 'medium' | 'large';
