@@ -2,14 +2,13 @@ import { StackScreenProps } from '@react-navigation/stack';
 import React, { useContext, useEffect, useState } from 'react';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import styled from 'styled-components/native';
-import { View } from '../../../components/Themed';
-import { TabTwoParamList } from '../../../infrastructure/navigation/types';
+import { MapTabParamList } from '../../../infrastructure/navigation/types';
 import { LocationContext } from '../../../services/location/location.context';
 import { RestaurantsContext } from '../../../services/restaurants/mock/restaurants.context';
 import { MapCallout } from '../components/map-callout.component';
 import { Search } from '../components/search.component';
 
-type MapScreenProps = StackScreenProps<TabTwoParamList, 'Map'>;
+type MapScreenProps = StackScreenProps<MapTabParamList, 'Map'>;
 
 export const MapScreen = ({ navigation }: MapScreenProps) => {
   const { location } = useContext(LocationContext);

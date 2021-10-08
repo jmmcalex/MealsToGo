@@ -2,11 +2,11 @@ import { StackScreenProps } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
-import { TabOneParamList } from '../../../infrastructure/navigation/types';
+import { RestaurantTabParamList } from '../../../infrastructure/navigation/types';
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
 
 type RestaurantDetailScreenProps = StackScreenProps<
-  TabOneParamList,
+  RestaurantTabParamList,
   'RestaurantDetail'
 >;
 

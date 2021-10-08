@@ -7,14 +7,17 @@ import { FavoritesBar } from '../../../components/favorites/favorites-bar.compon
 import { Spacer } from '../../../components/spacer/spacer.component';
 import { Text } from '../../../components/typography/text.component';
 import { SafeAreaView } from '../../../components/utility/safe-area.component';
-import { TabOneParamList } from '../../../infrastructure/navigation/types';
+import { RestaurantTabParamList } from '../../../infrastructure/navigation/types';
 import { FavoritesContext } from '../../../services/favorites/favorites.context';
 import { RestaurantsContext } from '../../../services/restaurants/mock/restaurants.context';
 import { Restaurant } from '../../../types/restaurant';
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
 import { Search } from '../components/search.component';
 
-type RestaurantScreenProps = StackScreenProps<TabOneParamList, 'Restaurants'>;
+type RestaurantScreenProps = StackScreenProps<
+  RestaurantTabParamList,
+  'Restaurants'
+>;
 
 export function RestaurantsScreen({ navigation }: RestaurantScreenProps) {
   const { isLoading, restaurants } = useContext(RestaurantsContext);

@@ -12,14 +12,14 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          RestaurantTab: {
             screens: {
               Restaurants: 'restaurants',
             },
           },
-          TabTwo: {
+          MapTab: {
             screens: {
-              TabTwoScreen: 'two',
+              MapTabScreen: 'two',
             },
           },
           TabThree: {

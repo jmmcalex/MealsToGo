@@ -15,7 +15,11 @@ import { RestaurantDetailScreen } from '../../features/restaurants/screens/resta
 import { RestaurantsScreen } from '../../features/restaurants/screens/restaurants.screen';
 import useColorScheme from '../../hooks/useColorScheme';
 import Colors from '../Colors';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from './types';
+import {
+  BottomTabParamList,
+  RestaurantTabParamList,
+  MapTabParamList,
+} from './types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -29,7 +33,7 @@ export default function BottomTabNavigator() {
     >
       <BottomTab.Screen
         name='Restaurants'
-        component={TabOneNavigator}
+        component={RestaurantTabNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name='restaurant' color={color} />
@@ -38,14 +42,14 @@ export default function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name='Map'
-        component={TabTwoNavigator}
+        component={MapTabNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name='map' color={color} />,
         }}
       />
       <BottomTab.Screen
         name='Settings'
-        component={TabTwoNavigator}
+        component={MapTabNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name='settings' color={color} />
@@ -67,39 +71,39 @@ function TabBarIcon(props: {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const RestaurantTabStack = createStackNavigator<RestaurantTabParamList>();
 
-function TabOneNavigator() {
+function RestaurantTabNavigator() {
   return (
-    <TabOneStack.Navigator
+    <RestaurantTabStack.Navigator
       screenOptions={{
         ...TransitionPresets.ModalPresentationIOS,
       }}
     >
-      <TabOneStack.Screen
+      <RestaurantTabStack.Screen
         name='Restaurants'
         component={RestaurantsScreen}
         options={{ headerShown: false }}
       />
-      <TabOneStack.Screen
+      <RestaurantTabStack.Screen
         name='RestaurantDetail'
         component={RestaurantDetailScreen}
         options={{ headerShown: false }}
       />
-    </TabOneStack.Navigator>
+    </RestaurantTabStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const MapTabStack = createStackNavigator<MapTabParamList>();
 
-function TabTwoNavigator() {
+function MapTabNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
+    <MapTabStack.Navigator>
+      <MapTabStack.Screen
         name='Map'
         component={MapScreen}
         options={{ headerShown: false }}
       />
-    </TabTwoStack.Navigator>
+    </MapTabStack.Navigator>
   );
 }

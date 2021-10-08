@@ -1,7 +1,7 @@
 import React from 'react';
+import { View } from 'react-native';
 import { Callout } from 'react-native-maps';
 import { CompactRestaurantInfo } from '../../../components/restaurant/compact-restaurant-info.component';
-import { View } from '../../../components/Themed';
 import { Restaurant } from '../../../types/restaurant';
 
 interface MapCalloutProps {
