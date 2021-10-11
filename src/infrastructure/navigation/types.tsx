@@ -36,6 +36,10 @@ export type MapTabParamList = {
   };
 };
 
-export type TabThreeParamList = {
+export type SettingsParamList = {
   Settings: undefined;
+  Favorites: undefined;
+  RestaurantDetail: {
+    restaurant: Restaurant;
+  };
 };

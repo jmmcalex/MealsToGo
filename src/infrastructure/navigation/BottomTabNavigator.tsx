@@ -15,10 +15,11 @@ import { RestaurantDetailScreen } from '../../features/restaurants/screens/resta
 import { RestaurantsScreen } from '../../features/restaurants/screens/restaurants.screen';
 import useColorScheme from '../../hooks/useColorScheme';
 import Colors from '../Colors';
+import { SettingsNavigator } from './settings.navigator';
 import {
   BottomTabParamList,
-  RestaurantTabParamList,
   MapTabParamList,
+  RestaurantTabParamList,
 } from './types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -49,7 +50,7 @@ export default function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name='Settings'
-        component={MapTabNavigator}
+        component={SettingsNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name='settings' color={color} />

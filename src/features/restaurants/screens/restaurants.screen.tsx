@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { FlatList, Pressable } from 'react-native';
 import { ActivityIndicator, Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
+import { FadeInView } from '../../../components/animations/fade.animation';
 import { FavoritesBar } from '../../../components/favorites/favorites-bar.component';
 import { Spacer } from '../../../components/spacer/spacer.component';
 import { Text } from '../../../components/typography/text.component';
@@ -66,8 +67,11 @@ export function RestaurantsScreen({ navigation }: RestaurantScreenProps) {
                   })
                 }
               >
-                <RestaurantInfoCard restaurant={item} />
-                <Spacer position='bottom' size='large' />
+                <Spacer position='bottom' size='large'>
+                  <FadeInView>
+                    <RestaurantInfoCard restaurant={item} />
+                  </FadeInView>
+                </Spacer>
               </CardContainer>
             );
           }}

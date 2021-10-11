@@ -1,5 +1,5 @@
-import { mockImages, mocks } from '.';
 import camelize from 'camelize';
+import { mockImages, mocks } from '.';
 import {
   Location,
   MockRestaurant,

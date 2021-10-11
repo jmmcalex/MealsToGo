@@ -9,7 +9,10 @@ import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
 import NotFoundScreen from '../../screens/NotFoundScreen';
 import { AuthenticationContext } from '../../services/authentication/authentication.context';
-import { AccountNavigator } from './AccountNavigator';
+import { FavoritesContextProvider } from '../../services/favorites/favorites.context';
+import { LocationContextProvider } from '../../services/location/location.context';
+import { RestaurantsContextProvider } from '../../services/restaurants/mock/restaurants.context';
+import { AccountNavigator } from './account.navigator';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import { RootStackParamList } from './types';
@@ -25,7 +28,17 @@ export default function Navigation({
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}
     >
-      {user ? <RootNavigator /> : <AccountNavigator />}
+      {user ? (
+        <FavoritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <RootNavigator />
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
+        </FavoritesContextProvider>
+      ) : (
+        <AccountNavigator />
+      )}
     </NavigationContainer>
   );
 }

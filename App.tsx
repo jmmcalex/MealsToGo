@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components/native';
@@ -10,9 +9,6 @@ import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/infrastructure/navigation';
 import { theme } from './src/infrastructure/theme';
 import { AuthenticationContextProvider } from './src/services/authentication/authentication.context';
-import { FavoritesContextProvider } from './src/services/favorites/favorites.context';
-import { LocationContextProvider } from './src/services/location/location.context';
-import { RestaurantsContextProvider } from './src/services/restaurants/mock/restaurants.context';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -37,14 +33,8 @@ export default function App() {
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
           <AuthenticationContextProvider>
-            <FavoritesContextProvider>
-              <LocationContextProvider>
-                <RestaurantsContextProvider>
-                  <Navigation colorScheme={colorScheme} />
-                  <StatusBar />
-                </RestaurantsContextProvider>
-              </LocationContextProvider>
-            </FavoritesContextProvider>
+            <Navigation colorScheme={colorScheme} />
+            <StatusBar />
           </AuthenticationContextProvider>
         </ThemeProvider>
       </SafeAreaProvider>
