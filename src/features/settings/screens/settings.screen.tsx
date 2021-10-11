@@ -1,5 +1,6 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React, { useContext } from 'react';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Avatar, List } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { Spacer } from '../../../components/spacer/spacer.component';
@@ -24,8 +25,10 @@ export const SettingsScreen = ({ navigation }: SettingsScreenProps) => {
 
   return (
     <SafeAreaView>
-      {/* @ts-ignore */}
-      <Avatar.Icon size={180} icon='human' backgroundColor='#6299f1' />
+      <TouchableOpacity onPress={() => navigation.navigate('Camera')}>
+        {/* @ts-ignore */}
+        <Avatar.Icon size={180} icon='human' backgroundColor='#6299f1' />
+      </TouchableOpacity>
       <Spacer position='top' size='large'>
         <Text variant='label'>{user?.email}</Text>
       </Spacer>

@@ -29,6 +29,7 @@ export const SettingsNavigator = ({
         component={SettingsScreen}
       />
       <Stack.Screen name='Favorites' component={FavoritesScreen} />
+      <Stack.Screen name='Camera' component={FavoritesScreen} />
     </Stack.Navigator>
   );
 };

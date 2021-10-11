@@ -42,4 +42,5 @@ export type SettingsParamList = {
   RestaurantDetail: {
     restaurant: Restaurant;
   };
+  Camera: undefined;
 };
